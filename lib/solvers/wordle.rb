@@ -1,15 +1,13 @@
 # typed: true
 # frozen_string_literal: true
 
-require_relative "../words/five_letter_words"
-
 module Solvers
   class Wordle
     extend T::Sig
     attr_reader :words
 
     sig { params(words: T::Array[String]).void }
-    def initialize(words = Words::FiveLetterWords::WORDS.dup)
+    def initialize(words)
       @words = words
     end
 

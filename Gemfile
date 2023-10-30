@@ -2,12 +2,16 @@
 
 source "https://rubygems.org"
 
+gem "polyphony"
+gem "msgpack"
+
 gemspec
 
 # sorbet-static is not available on Windows. We also skip Tapioca since it depends on sorbet-static-and-runtime
 NON_WINDOWS_PLATFORMS = [:ruby] # C Ruby (MRI), Rubinius or TruffleRuby, but NOT Windows
 
 group :development do
+  gem "benchmark-memory"
   gem "minitest", "~> 5.20"
   gem "minitest-reporters", "~> 1.6"
   gem "rake", "~> 13.0"
