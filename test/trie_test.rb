@@ -1,3 +1,4 @@
+# typed: false
 # frozen_string_literal: true
 
 require "trie"
@@ -16,11 +17,11 @@ class TrieTest < Minitest::Test
   def test_include?
     @trie.insert("apple")
     @trie.insert("apples")
-    assert(@trie.include?("apple"))
-    assert(@trie.include?("apples"))
-    refute(@trie.include?("appl"))
-    refute(@trie.include?("apply"))
-    refute(@trie.include?("mapple"))
+    assert_includes(@trie, "apple")
+    assert_includes(@trie, "apples")
+    refute_includes(@trie, "appl")
+    refute_includes(@trie, "apply")
+    refute_includes(@trie, "mapple")
   end
 
   def test_words_with_char
@@ -39,8 +40,8 @@ class TrieTest < Minitest::Test
 
   def test_delete
     @trie.insert("apple")
-    assert(@trie.include?("apple"))
+    assert_includes(@trie, "apple")
     @trie.delete("apple")
-    refute(@trie.include?("apple"))
+    refute_includes(@trie, "apple")
   end
 end

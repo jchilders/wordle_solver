@@ -9,20 +9,22 @@ class Trie
 
   attr_accessor :children, :is_word
 
-  sig {void}
+  sig { void }
   def initialize
     @children = {}
     @is_word = false
   end
 
-  sig {params(words: T::Array[String]).returns(Trie)}
-  def self.from_words(words)
-    new.tap do |trie|
-      words.each { |word| trie.insert(word) }
+  class << self
+    sig { params(words: T::Array[String]).returns(Trie) }
+    def from_words(words)
+      new.tap do |trie|
+        words.each { |word| trie.insert(word) }
+      end
     end
   end
 
-  sig {params(word: String).void}
+  sig { params(word: String).void }
   def insert(word)
     node = self
     word.each_char do |char|
@@ -32,29 +34,30 @@ class Trie
     node.is_word = true
   end
 
-  sig {params(word: String).void}
+  sig { params(word: String).void }
   def delete(word)
     __delete(self, word, 0)
   end
 
-  sig {params(word: String).returns(T::Boolean)}
+  sig { params(word: String).returns(T::Boolean) }
   def include?(word)
     node = self
     word.each_char do |char|
       return false if node.children[char].nil?
+
       node = node.children[char]
     end
     node.is_word
   end
-  
-  sig {returns(T::Array[String])}
+
+  sig { returns(T::Array[String]) }
   def words
     all_words = []
-    __all_words(self, '', all_words)
+    __all_words(self, "", all_words)
     all_words
   end
 
-  sig {params(node: Trie, current_word: String, all_words: T::Array[String]).void}
+  sig { params(node: Trie, current_word: String, all_words: T::Array[String]).void }
   def __all_words(node, current_word, all_words)
     if node.is_word
       all_words.push(current_word)
@@ -104,7 +107,7 @@ class Trie
       __words_with_char(child_node, new_prefix, words, char)
     end
   end
-  
+
   def __words_with_char_at_index(node, prefix, words, char, index)
     # if the current node is a word and contains the given character at the
     # given index, add it to the list of words
@@ -114,8 +117,13 @@ class Trie
     node.children.each_key do |key|
       child_node = node.children[key]
       new_prefix = prefix + key
-      __words_with_char_at_index(child_node, new_prefix, words, char,
-        index)
+      __words_with_char_at_index(
+        child_node,
+        new_prefix,
+        words,
+        char,
+        index,
+      )
     end
   end
 

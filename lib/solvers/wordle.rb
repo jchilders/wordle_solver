@@ -11,7 +11,7 @@ module Solvers
       @words = words
     end
 
-    sig {returns(T::Array[String])}
+    sig { returns(T::Array[String]) }
     def suggestions
       words.map(&:join)
     end
