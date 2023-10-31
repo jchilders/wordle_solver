@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     wordle_solver (0.0.1)
+      sorbet-runtime (>= 0.5.5685)
 
 GEM
   remote: https://rubygems.org/

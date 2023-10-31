@@ -4,16 +4,16 @@
 require "msgpack"
 
 module Sources
-  class FiveLetterWordsParallel
+  class FiveLetterWords
     extend T::Sig
 
+    FILE = "words_five_letters.msgpack"
     attr_reader :words
 
     def initialize
       require "polyphony"
       @words = []
-      fd = IO.sysopen("words.msgpack")
-      io = IO.new(fd, "r")
+      io = IO.new(IO.sysopen(FILE), "r")
       unpacker = MessagePack::Unpacker.new
       io.feed_loop(unpacker, :feed_each) do |word|
         @words = word
