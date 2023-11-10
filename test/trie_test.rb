@@ -8,7 +8,13 @@ class TrieTest < Minitest::Test
     @trie = Trie.new
   end
 
-  def test_words
+  def test_from_words
+    words = %w(apple banana)
+    @trie = Trie.from_words(words)
+    assert_equal(2, @trie.words.size)
+  end
+
+  def test_insert
     @trie.insert("apple")
     @trie.insert("banana")
     assert_equal(2, @trie.words.size)

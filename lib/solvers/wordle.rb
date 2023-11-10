@@ -1,6 +1,8 @@
 # typed: true
 # frozen_string_literal: true
 
+require "sorbet-runtime"
+
 module Solvers
   class Wordle
     extend T::Sig
@@ -20,7 +22,7 @@ module Solvers
     def with(letters)
       letters.downcase!
       words.keep_if do |word|
-        word_t = word.tally
+        word_t = word.chars.tally
         reqd_t = letters.chars.tally
         reqd_t.all? do |k, v|
           if v == 1
@@ -35,19 +37,19 @@ module Solvers
     sig { params(letters: String).returns(T::Array[T::Array[String]]) }
     def without(letters)
       letters.downcase!
-      words.keep_if { |w| !w.intersect?(letters.chars) }
+      words.keep_if { |w| !w.chars.intersect?(letters.chars) }
     end
 
     sig { params(pos: Integer, letter: String).returns(T::Array[T::Array[String]]) }
     def nth_letter_is(pos, letter)
       letter.downcase!
-      words.keep_if { |w| w[pos] == letter }
+      words.keep_if { |w| w.chars[pos] == letter }
     end
 
     sig { params(pos: Integer, letter: String).returns(T::Array[T::Array[String]]) }
     def nth_letter_is_not(pos, letter)
       letter.downcase!
-      words.keep_if { |w| w[pos] != letter && w.include?(letter) }
+      words.keep_if { |w| w.chars[pos] != letter }
     end
   end
 end
