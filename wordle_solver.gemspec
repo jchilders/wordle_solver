@@ -23,6 +23,4 @@ Gem::Specification.new do |s|
   s.bindir = "exe"
   s.executables = s.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   s.require_paths = ["lib"]
-
-  s.add_dependency("sorbet-runtime", ">= 0.5.5685")
 end

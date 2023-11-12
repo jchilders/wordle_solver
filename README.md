@@ -26,42 +26,6 @@ After checking out the repo, run `bin/setup` to install dependencies. You can al
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
-### Sorbet
-🤔 What's next
-
-1. Many Ruby applications use metaprogramming DSLs to dynamically generate constants and methods.
-  To generate type definitions for any DSLs in your application, run:
-
-  bin/tapioca dsl
-
-2. Check whether the constants in the sorbet/rbi/todo.rbi file actually exist in your project.
-  It is possible that some of these constants are typos, and leaving them in todo.rbi will
-  hide errors in your application. Ideally, you should be able to remove all definitions
-  from this file and delete it.
-
-3. Typecheck your project:
-
-  bundle exec srb tc
-
-  There should not be any typechecking errors.
-
-4. Upgrade a file marked "# typed: false" to "# typed: true".
-  Then, run: bundle exec srb tc and try to fix any errors.
-
-  You can use Spoom to bump files for you:
-
-  spoom bump --from false --to true
-
-  To learn more about Spoom, visit: https://github.com/Shopify/spoom
-
-5. Add signatures to your methods with sig. To learn how, read: https://sorbet.org/docs/sigs
-
-Documentation
-We recommend skimming these docs to get a feel for how to use Sorbet:
-- Gradual Type Checking: https://sorbet.org/docs/gradual
-- Enabling Static Checks: https://sorbet.org/docs/static
-- RBI Files: https://sorbet.org/docs/rbi
-
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/wordle_solver.

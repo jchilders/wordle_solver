@@ -5,8 +5,6 @@ require "msgpack"
 
 module Sources
   class FiveLetterWords
-    extend T::Sig
-
     FILE = "words_five_letters.msgpack"
     attr_reader :words
 

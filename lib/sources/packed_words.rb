@@ -3,8 +3,6 @@
 
 module Sources
   class PackedWords
-    extend T::Sig
-
     attr_reader :words
 
     def initialize

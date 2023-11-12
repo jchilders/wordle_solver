@@ -1,22 +1,17 @@
 # typed: true
 # frozen_string_literal: true
 
-require "sorbet-runtime"
-
 class Trie
-  extend T::Sig
   include Enumerable
 
   attr_accessor :children, :is_word
 
-  sig { void }
   def initialize
     @children = {}
     @is_word = false
   end
 
   class << self
-    sig { params(words: T::Array[String]).returns(Trie) }
     def from_words(words)
       new.tap do |trie|
         words.each { |word| trie.insert(word) }
@@ -24,7 +19,6 @@ class Trie
     end
   end
 
-  sig { params(word: String).void }
   def insert(word)
     node = self
     word.each_char do |char|
@@ -34,12 +28,10 @@ class Trie
     node.is_word = true
   end
 
-  sig { params(word: String).void }
   def delete(word)
     __delete(self, word, 0)
   end
 
-  sig { params(word: String).returns(T::Boolean) }
   def include?(word)
     node = self
     word.each_char do |char|
@@ -50,14 +42,12 @@ class Trie
     node.is_word
   end
 
-  sig { returns(T::Array[String]) }
   def words
     all_words = []
     __all_words(self, "", all_words)
     all_words
   end
 
-  sig { params(node: Trie, current_word: String, all_words: T::Array[String]).void }
   def __all_words(node, current_word, all_words)
     if node.is_word
       all_words.push(current_word)

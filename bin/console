@@ -3,7 +3,6 @@
 
 require "benchmark"
 require "bundler/setup"
-require "sorbet-runtime"
 
 require "wordle_solver"
 
