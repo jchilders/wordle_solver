@@ -1,4 +1,3 @@
-# typed: true
 # frozen_string_literal: true
 
 module Solvers
@@ -15,6 +14,7 @@ module Solvers
 
     def with(letters)
       letters.downcase!
+      
       words.keep_if do |word|
         word_t = word.chars.tally
         reqd_t = letters.chars.tally

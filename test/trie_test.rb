@@ -1,6 +1,8 @@
 # typed: false
 # frozen_string_literal: true
 
+require_relative "helper"
+
 require "trie"
 
 class TrieTest < Minitest::Test
